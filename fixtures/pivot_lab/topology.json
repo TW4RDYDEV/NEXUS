@@ -1,0 +1,1 @@
+{"description":"Fictional two-hop reachability test","direct":"10.20.4.17","pivots":[{"source":"10.20.4.17","network":"172.16.20.0/24"},{"source":"172.16.20.12","network":"172.16.40.0/24"}],"destination":"172.16.40.8"}

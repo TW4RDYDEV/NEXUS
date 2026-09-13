@@ -1,0 +1,26 @@
+node_modules/
+dist/
+src-tauri/target/
+target/
+.nexus/
+release/**/data/
+test-results/
+playwright-report/
+*.log
+fixtures/large_generated_lab/nmap.xml
+.env
+.env.*
+!.env.example
+
+# Local maintainer evidence; never package or automatically publish.
+authorship-fingerprint-report.json
+release-fingerprints/
+
+# Local release staging. Publish binaries through GitHub Releases, not the source tree.
+release/
+
+# Root-level generated release/install artifacts
+/NEXUS-*.zip
+/nexus.exe
+/nexus-bridge.exe
+/uninstall.exe

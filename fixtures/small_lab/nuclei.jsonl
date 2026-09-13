@@ -1,0 +1,1 @@
+{"template-id":"exposed-config-lab","info":{"name":"Exposed configuration backup","severity":"high","description":"A fictional lab endpoint exposes a configuration backup.","reference":["https://example.com/lab"]},"matched-at":"https://nx-demo-web02.helios.lab/backup/config.bak","ip":"10.20.4.17","matcher-name":"config-content","extracted-results":["LAB_CONFIGURATION=true"]}

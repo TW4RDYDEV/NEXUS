@@ -1,0 +1,55 @@
+[package]
+name = "nexus"
+version = "1.0.0"
+description = "Local-first offensive security engagement workspace"
+edition = "2021"
+publish = false
+license-file = "../LICENSE"
+default-run = "nexus"
+
+[lib]
+name = "nexus_core"
+crate-type = ["lib", "cdylib", "staticlib"]
+
+[[bin]]
+name = "nexus"
+path = "src/main.rs"
+required-features = ["desktop"]
+
+[[bin]]
+name = "nexus-bridge"
+path = "src/bin/bridge.rs"
+
+[features]
+default = []
+desktop = ["dep:tauri", "dep:tauri-plugin-dialog", "dep:tauri-build"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [], optional = true }
+
+[dependencies]
+tauri = { version = "2", features = [], optional = true }
+tauri-plugin-dialog = { version = "2", optional = true }
+rusqlite = { version = "0.37", features = ["bundled", "backup"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+uuid = { version = "1", features = ["v4"] }
+chrono = { version = "0.4", features = ["serde"] }
+ipnet = "2"
+roxmltree = "0.20"
+url = "2"
+regex = "1"
+argon2 = "0.5"
+chacha20poly1305 = "0.10"
+rand = "0.8"
+base64 = "0.22"
+zeroize = { version = "1", features = ["derive"] }
+sha2 = "0.10"
+
+[dev-dependencies]
+tempfile = "3"
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+strip = true

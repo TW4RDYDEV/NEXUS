@@ -1,0 +1,1 @@
+{"identifier":"main-window","description":"Local application window, native file selection only. All data access uses validated Rust commands.","windows":["main"],"permissions":["core:default","dialog:allow-open","dialog:allow-save"]}

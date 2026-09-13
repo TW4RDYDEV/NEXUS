@@ -1,0 +1,332 @@
+[
+  {
+    "id": "web-api",
+    "name": "Web & API",
+    "reference_url": "https://owasp.org/www-project-web-security-testing-guide/stable/4-Web_Application_Security_Testing/",
+    "checks": [
+      {
+        "id": "01",
+        "name": "Attack surface and entry points",
+        "objective": "Inventory endpoints, roles, trust boundaries and exposed administrative interfaces."
+      },
+      {
+        "id": "02",
+        "name": "Authentication and recovery",
+        "objective": "Evaluate authentication, account recovery, MFA enrollment and resistance to account abuse."
+      },
+      {
+        "id": "03",
+        "name": "Object and function authorization",
+        "objective": "Compare role and object access decisions using permitted test accounts."
+      },
+      {
+        "id": "04",
+        "name": "Session and token lifecycle",
+        "objective": "Review token issuance, expiration, revocation and session boundaries."
+      },
+      {
+        "id": "05",
+        "name": "Untrusted input and output",
+        "objective": "Assess input handling, injection exposure, file processing and output encoding."
+      },
+      {
+        "id": "06",
+        "name": "Business logic and API limits",
+        "objective": "Evaluate workflow constraints, abuse cases, race conditions and resource limits."
+      }
+    ]
+  },
+  {
+    "id": "identity",
+    "name": "Directory & identity",
+    "reference_url": "",
+    "checks": [
+      {
+        "id": "01",
+        "name": "Directory attack surface",
+        "objective": "Inventory directory services, trust relationships, identity providers and privileged groups."
+      },
+      {
+        "id": "02",
+        "name": "Privilege delegation",
+        "objective": "Review delegated permissions and paths to privileged identity control."
+      },
+      {
+        "id": "03",
+        "name": "Authentication protocol exposure",
+        "objective": "Assess legacy authentication, signing, channel binding and credential exposure."
+      },
+      {
+        "id": "04",
+        "name": "Certificate and federation trust",
+        "objective": "Review certificate enrollment, federation claims and trust configuration."
+      },
+      {
+        "id": "05",
+        "name": "Service identities and secrets",
+        "objective": "Review identity ownership, credential rotation and access boundaries."
+      },
+      {
+        "id": "06",
+        "name": "Confirmed access and cleanup",
+        "objective": "Document confirmed access paths and remove engagement-created accounts or changes."
+      }
+    ]
+  },
+  {
+    "id": "cloud",
+    "name": "Cloud & SaaS",
+    "reference_url": "",
+    "checks": [
+      {
+        "id": "01",
+        "name": "Account and tenant boundaries",
+        "objective": "Record authorized subscriptions, projects, organizations and tenant boundaries."
+      },
+      {
+        "id": "02",
+        "name": "IAM and workload identity",
+        "objective": "Review trust policies, role assumptions, service identities and least privilege."
+      },
+      {
+        "id": "03",
+        "name": "Storage and data exposure",
+        "objective": "Evaluate object access, data sharing, encryption configuration and retention."
+      },
+      {
+        "id": "04",
+        "name": "Control plane and network exposure",
+        "objective": "Review exposed management interfaces, private connectivity and security rules."
+      },
+      {
+        "id": "05",
+        "name": "Logging and detection coverage",
+        "objective": "Verify agreed security events are logged and can be investigated."
+      },
+      {
+        "id": "06",
+        "name": "SaaS integrations and consent",
+        "objective": "Review delegated application access, OAuth consent and third-party integrations."
+      }
+    ]
+  },
+  {
+    "id": "infrastructure",
+    "name": "Network & infrastructure",
+    "reference_url": "",
+    "checks": [
+      {
+        "id": "01",
+        "name": "Scope and service inventory",
+        "objective": "Reconcile discovered hosts and services against authorized ranges and exclusions."
+      },
+      {
+        "id": "02",
+        "name": "Service configuration and patching",
+        "objective": "Validate scanner observations against service versions and configuration evidence."
+      },
+      {
+        "id": "03",
+        "name": "Segmentation and trust boundaries",
+        "objective": "Test agreed network boundaries and record actual reachability separately from access."
+      },
+      {
+        "id": "04",
+        "name": "Credential exposure and reuse",
+        "objective": "Assess permitted credential validation and record per-service outcomes."
+      },
+      {
+        "id": "05",
+        "name": "Privilege boundaries",
+        "objective": "Validate agreed local privilege boundaries with reproducible evidence."
+      },
+      {
+        "id": "06",
+        "name": "Resilience and change cleanup",
+        "objective": "Confirm restoration steps and verify removal of engagement artifacts."
+      }
+    ]
+  },
+  {
+    "id": "containers",
+    "name": "Containers & Kubernetes",
+    "reference_url": "",
+    "checks": [
+      {
+        "id": "01",
+        "name": "Cluster and registry exposure",
+        "objective": "Inventory authorized clusters, registries and control-plane endpoints."
+      },
+      {
+        "id": "02",
+        "name": "RBAC and service accounts",
+        "objective": "Review subject permissions, token use and namespace boundaries."
+      },
+      {
+        "id": "03",
+        "name": "Workload isolation",
+        "objective": "Assess security contexts, host mounts and workload-to-host trust."
+      },
+      {
+        "id": "04",
+        "name": "Images and software supply chain",
+        "objective": "Review image provenance, package exposure and release integrity."
+      },
+      {
+        "id": "05",
+        "name": "Secrets and admission policy",
+        "objective": "Evaluate secret handling and the enforcement of workload admission controls."
+      }
+    ]
+  },
+  {
+    "id": "mobile",
+    "name": "Mobile applications",
+    "reference_url": "",
+    "checks": [
+      {
+        "id": "01",
+        "name": "Storage and sensitive artifacts",
+        "objective": "Review local data, backups, logs and sensitive material retained by the application."
+      },
+      {
+        "id": "02",
+        "name": "Transport and API trust",
+        "objective": "Evaluate transport configuration and server-side authorization for mobile clients."
+      },
+      {
+        "id": "03",
+        "name": "Platform interaction",
+        "objective": "Review deep links, IPC, exported components and platform permission boundaries."
+      },
+      {
+        "id": "04",
+        "name": "Authentication and session handling",
+        "objective": "Assess local unlock, biometric use and server session lifecycle."
+      },
+      {
+        "id": "05",
+        "name": "Build and update integrity",
+        "objective": "Review signing, update provenance and release configuration."
+      }
+    ]
+  },
+  {
+    "id": "wireless",
+    "name": "Wireless & physical interfaces",
+    "reference_url": "",
+    "checks": [
+      {
+        "id": "01",
+        "name": "Authorized radios and access points",
+        "objective": "Record permitted wireless identifiers, locations and testing constraints."
+      },
+      {
+        "id": "02",
+        "name": "Network authentication and isolation",
+        "objective": "Review authentication modes and segmentation of wireless clients."
+      },
+      {
+        "id": "03",
+        "name": "Device enrollment and management",
+        "objective": "Assess onboarding, management access and device trust assumptions."
+      },
+      {
+        "id": "04",
+        "name": "Physical interface exposure",
+        "objective": "Document permitted console, removable media and device-access observations."
+      }
+    ]
+  },
+  {
+    "id": "desktop",
+    "name": "Desktop & thick clients",
+    "reference_url": "",
+    "checks": [
+      {
+        "id": "01",
+        "name": "Local storage and secret handling",
+        "objective": "Review local configuration, caches, logs and credential protection."
+      },
+      {
+        "id": "02",
+        "name": "IPC and privilege boundaries",
+        "objective": "Assess named pipes, local services and privileged operation authorization."
+      },
+      {
+        "id": "03",
+        "name": "Update and installer trust",
+        "objective": "Review package integrity, update verification and installation permissions."
+      },
+      {
+        "id": "04",
+        "name": "Remote communication and backend controls",
+        "objective": "Validate transport and backend authorization independently of the client."
+      }
+    ]
+  },
+  {
+    "id": "operations",
+    "name": "Engagement operations",
+    "reference_url": "",
+    "checks": [
+      {
+        "id": "01",
+        "name": "Rules of engagement and contacts",
+        "objective": "Record authorization, exclusions, windows, stop conditions and escalation contacts."
+      },
+      {
+        "id": "02",
+        "name": "Evidence handling and retention",
+        "objective": "Agree collection boundaries, custody, storage, reporting and deletion requirements."
+      },
+      {
+        "id": "03",
+        "name": "Detection validation",
+        "objective": "Coordinate agreed detection scenarios and record observed control responses."
+      },
+      {
+        "id": "04",
+        "name": "Reporting and quality review",
+        "objective": "Review finding reproducibility, severity rationale, affected scope and remediation."
+      },
+      {
+        "id": "05",
+        "name": "Retest and closure",
+        "objective": "Retest agreed fixes, reconcile unresolved risks and confirm cleanup."
+      }
+    ]
+  },
+  {
+    "id": "ot-iot",
+    "name": "OT & embedded systems",
+    "reference_url": "",
+    "checks": [
+      {
+        "id": "01",
+        "name": "Operating constraints and system criticality",
+        "objective": "Record device roles, safety constraints, approved methods and maintenance windows."
+      },
+      {
+        "id": "02",
+        "name": "Management and protocol exposure",
+        "objective": "Inventory approved interfaces and document access-control observations."
+      },
+      {
+        "id": "03",
+        "name": "Firmware and update trust",
+        "objective": "Review available firmware provenance, update verification and recovery processes."
+      },
+      {
+        "id": "04",
+        "name": "Device secrets and trust boundaries",
+        "objective": "Review authorized evidence of credential storage and communication trust."
+      },
+      {
+        "id": "05",
+        "name": "Recovery and remediation feasibility",
+        "objective": "Assess agreed recovery steps and operational constraints on remediation."
+      }
+    ]
+  }
+]

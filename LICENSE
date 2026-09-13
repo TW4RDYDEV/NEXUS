@@ -1,0 +1,129 @@
+NEXUS SOURCE-AVAILABLE LICENSE 1.0
+
+Copyright © 2026 TWARDY.exe / TW4RDYDEV. All rights reserved except as expressly granted below.
+
+NEXUS is source-available software. This license is not an OSI-approved open-source license.
+
+1. DEFINITIONS
+
+"Software" means the NEXUS source code, compiled binaries, documentation, first-party assets, and other materials distributed with NEXUS by the Copyright Holder.
+
+"Copyright Holder" means TWARDY.exe / TW4RDYDEV.
+
+"Private Modification" means a modification of the Software that is used only by you, or internally within the same legal entity that made the modification, and is not distributed outside that person or entity.
+
+"Redistribute" or "Distribution" means providing, publishing, transferring, sublicensing, mirroring, uploading, selling, renting, leasing, making available for download, or otherwise supplying the Software or a modified version to a third party.
+
+2. PERMITTED USE
+
+Subject to this license, you may, free of charge:
+
+(a) download, install, execute, and use the Software for lawful purposes;
+
+(b) use the Software for personal, educational, research, CTF, lab, internal business, and authorized security-testing purposes;
+
+(c) use the Software while providing lawful professional security services, including paid security assessments, provided that you are charging for your professional services and not selling, licensing, renting, or redistributing NEXUS itself;
+
+(d) inspect and study the source code;
+
+(e) make Private Modifications and compile those Private Modifications for your own use or the internal use of the same legal entity; and
+
+(f) make reasonable internal backup copies necessary for permitted use.
+
+3. OUTPUTS
+
+Reports, exports, notes, findings, screenshots, evidence packages, and other user-created output produced through permitted use of NEXUS are not subject to the redistribution restrictions in this license. You remain responsible for the lawfulness and confidentiality of your own data and outputs.
+
+4. PRIVATE MODIFICATIONS
+
+Private Modifications are permitted only while they remain private. You may not publish, release, distribute, sell, sublicense, or otherwise provide a modified version of NEXUS to third parties except under the Contribution Fork Exception in Section 5 or with prior written permission from the Copyright Holder.
+
+5. CONTRIBUTION FORK EXCEPTION
+
+You may create and maintain a public source-code fork solely for the purpose of preparing and submitting contributions to the official NEXUS repository, provided that:
+
+(a) this license and all copyright and attribution notices remain intact;
+
+(b) the fork is clearly identified as unofficial;
+
+(c) you do not publish compiled releases or installers from the fork;
+
+(d) you do not market or present the fork as an alternative NEXUS distribution; and
+
+(e) the fork is used in good faith for contribution or review purposes.
+
+This exception does not permit redistribution of NEXUS as a separate product.
+
+6. PROHIBITED ACTIVITIES
+
+Without prior written permission from the Copyright Holder, you may not:
+
+(a) sell, resell, rent, lease, sublicense, or charge for copies of the Software;
+
+(b) redistribute, mirror, republish, upload, or otherwise provide copies of the Software, whether modified or unmodified, to any third party, except as expressly permitted by Section 5 or with prior written permission from the Copyright Holder;
+
+(c) publish or distribute modified builds or derivative distributions;
+
+(d) rebrand NEXUS or distribute it under another product name;
+
+(e) remove, conceal, or materially alter the NEXUS name, "by TWARDY.exe" attribution, copyright notices, license notices, or other authorship notices contained in the Software;
+
+(f) incorporate a substantial portion of the Software into another distributed software product, appliance, platform, or service;
+
+(g) offer NEXUS itself as a hosted, managed, subscription, SaaS, or paid-access product or service;
+
+(h) represent an unofficial fork, modification, or build as an official NEXUS release;
+
+(i) falsely claim authorship or ownership of NEXUS; or
+
+(j) grant rights to another person that exceed the rights granted to you under this license.
+
+7. INTERNAL ORGANIZATIONAL USE
+
+A legal entity may install and use NEXUS on multiple devices for its own internal operations and may make Private Modifications for internal use. Providing NEXUS to a separate customer, parent company, subsidiary, affiliate, contractor, or other legal entity is Distribution unless separately authorized in writing by the Copyright Holder.
+
+8. CONTRIBUTIONS TO THE OFFICIAL PROJECT
+
+If you intentionally submit code, documentation, assets, or other material to the official NEXUS project for inclusion, you represent that you have the right to submit it and you grant the Copyright Holder a perpetual, worldwide, irrevocable, royalty-free, transferable, and sublicensable license to use, reproduce, modify, distribute, relicense, commercialize, and incorporate that contribution into NEXUS or related products. You retain copyright in your original contribution unless separately agreed otherwise.
+
+9. THIRD-PARTY COMPONENTS
+
+Third-party libraries, tools, and other components distributed with or referenced by NEXUS remain subject to their respective licenses. This license applies only to first-party NEXUS material owned by the Copyright Holder and does not replace or restrict third-party license rights.
+
+10. BRANDING AND TRADEMARKS
+
+This license grants no trademark, service-mark, or branding rights in the names NEXUS, TWARDY.exe, TW4RDYDEV, or associated first-party logos, except the limited right to display existing branding as part of permitted use of unmodified or Private Modified copies.
+
+11. COMMERCIAL LICENSING
+
+Rights not granted by this license, including redistribution, OEM use, commercial derivative distribution, hosted-product use, and other commercial licensing arrangements, may be available by separate written agreement with the Copyright Holder.
+
+12. TERMINATION
+
+Your rights under this license terminate automatically if you materially violate its terms. Upon termination, you must stop using and distributing any copies for which your rights have terminated. Rights may be reinstated only by written permission from the Copyright Holder or where required by applicable law.
+
+13. NO WARRANTY
+
+THE SOFTWARE IS PROVIDED "AS IS" AND "AS AVAILABLE", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, NON-INFRINGEMENT, ACCURACY, RELIABILITY, OR SECURITY. YOU USE THE SOFTWARE AT YOUR OWN RISK.
+
+14. LIMITATION OF LIABILITY
+
+TO THE MAXIMUM EXTENT PERMITTED BY LAW, THE COPYRIGHT HOLDER SHALL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, CONSEQUENTIAL, OR OTHER DAMAGES ARISING FROM OR RELATED TO THE SOFTWARE OR ITS USE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+
+15. AUTHORIZED SECURITY USE
+
+NEXUS is intended for lawful security work. This license does not grant authorization to access, test, scan, exploit, or interfere with systems that you do not own or do not have explicit permission to assess. You are solely responsible for complying with applicable law and engagement scope.
+
+16. SEVERABILITY
+
+If any provision of this license is held unenforceable, the remaining provisions remain in effect to the fullest extent permitted by law.
+
+17. NO WAIVER; NO IMPLIED RIGHTS
+
+Failure to enforce a provision does not waive it. No rights are granted by implication, estoppel, or otherwise beyond those expressly stated in this license.
+
+18. ENTIRE LICENSE
+
+This license states the permissions granted by the Copyright Holder for the Software unless a separate written agreement applies.
+
+For licensing inquiries, contact the Copyright Holder through the official TW4RDYDEV GitHub profile or another contact method explicitly published by the Copyright Holder.

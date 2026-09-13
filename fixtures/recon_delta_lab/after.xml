@@ -1,0 +1,1 @@
+<nmaprun><host><address addr="10.20.4.17" addrtype="ipv4"/><ports><port protocol="tcp" portid="443"><state state="open"/><service name="https" product="nginx" version="1.26" tunnel="ssl"/></port><port protocol="tcp" portid="8080"><state state="open"/><service name="http" product="Jetty" version="12"/></port></ports></host></nmaprun>

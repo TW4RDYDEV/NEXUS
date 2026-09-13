@@ -1,0 +1,53 @@
+{
+  "name": "nexus-engagement-workspace",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "authorship:check": "node scripts/authorship_manifest.mjs",
+    "authorship:report": "node scripts/authorship_manifest.mjs --report",
+    "fingerprint:release": "node scripts/create_release_fingerprint.mjs",
+    "fingerprint:test": "node --test scripts/fingerprint.test.mjs",
+    "dev": "vite --host 127.0.0.1",
+    "typecheck": "tsc --noEmit",
+    "build": "tsc --noEmit && vite build",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "tauri": "tauri",
+    "desktop": "tauri dev --features desktop",
+    "package": "node scripts/release-build.mjs --bundle",
+    "check:rust": "cargo check --manifest-path src-tauri/Cargo.toml",
+    "test:rust": "cargo test --manifest-path src-tauri/Cargo.toml",
+    "bridge": "cargo run --manifest-path src-tauri/Cargo.toml --bin nexus-bridge",
+    "fixture:large": "node scripts/generate-large.mjs",
+    "lint": "eslint src tests --max-warnings 0",
+    "format": "prettier --write src tests scripts *.json *.ts *.js *.html",
+    "format:check": "prettier --check src tests scripts *.json *.ts *.js *.html",
+    "release:source-check": "node scripts/release-readiness.mjs",
+    "release:check": "node scripts/release-readiness.mjs --require-license",
+    "release:build": "node scripts/release-build.mjs --bundle"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "^2.8.0",
+    "@tauri-apps/plugin-dialog": "^2.4.0",
+    "cytoscape": "^3.33.0",
+    "lucide-react": "^0.468.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.55.0",
+    "@tauri-apps/cli": "^2.8.0",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "@vitejs/plugin-react": "^6.1.1",
+    "eslint": "^10.10.0",
+    "prettier": "^3.9.6",
+    "typescript": "^5.9.0",
+    "typescript-eslint": "^8.70.0",
+    "vite": "^8.2.2",
+    "vitest": "^4.1.11"
+  }
+}

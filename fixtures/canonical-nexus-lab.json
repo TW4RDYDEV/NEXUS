@@ -1,0 +1,103 @@
+{
+  "fixture_id": "nx-demo-helios-meridian-v1",
+  "name": "Helios / Meridian · Internal",
+  "domain": "helios.lab",
+  "web_ip": "10.20.4.17",
+  "file_ip": "172.22.20.12",
+  "web_credential": "demo-credential-web",
+  "archive_credential": "demo-credential-backup",
+  "admin_credential": "demo-credential-admin",
+  "scope": [
+    [
+      "10.20.4.0/24",
+      0
+    ],
+    [
+      "172.22.20.0/24",
+      0
+    ],
+    [
+      "172.22.40.0/24",
+      0
+    ],
+    [
+      "*.helios.lab",
+      0
+    ],
+    [
+      "10.20.4.1",
+      1
+    ],
+    [
+      "billing.helios.lab",
+      1
+    ]
+  ],
+  "hosts": [
+    {
+      "name": "NX-DEMO-DC01",
+      "ip": "172.22.40.10",
+      "os": "Windows Server 2022",
+      "port": 445,
+      "service": "SMB",
+      "direct": 0
+    },
+    {
+      "name": "NX-DEMO-APP01",
+      "ip": "172.22.20.24",
+      "os": "Ubuntu 24.04",
+      "port": 8080,
+      "service": "HTTP",
+      "direct": 0
+    },
+    {
+      "name": "NX-DEMO-DB01",
+      "ip": "172.22.40.8",
+      "os": "Debian 12",
+      "port": 5432,
+      "service": "PostgreSQL",
+      "direct": 0
+    },
+    {
+      "name": "NX-DEMO-VPN01",
+      "ip": "10.20.4.5",
+      "os": "Linux",
+      "port": 443,
+      "service": "HTTPS",
+      "direct": 1
+    },
+    {
+      "name": "NX-DEMO-BUILD01",
+      "ip": "172.22.20.33",
+      "os": "Ubuntu 24.04",
+      "port": 22,
+      "service": "SSH",
+      "direct": 0
+    },
+    {
+      "name": "NX-DEMO-ARCHIVE01",
+      "ip": "172.22.60.9",
+      "os": "Unknown",
+      "port": 445,
+      "service": "SMB",
+      "direct": 0
+    }
+  ],
+  "identifiers": [
+    "NX-DEMO-WEB02",
+    "NX-DEMO-FILE01",
+    "NX-DEMO-DC01",
+    "svc_meridian",
+    "svc_archive",
+    "helios.lab"
+  ],
+  "topology": [
+    "Operator",
+    "NX-DEMO-WEB02",
+    "svc_archive",
+    "NX-DEMO-FILE01",
+    "PIVOT-02",
+    "172.22.40.0/24",
+    "NX-DEMO-DC01"
+  ]
+}
