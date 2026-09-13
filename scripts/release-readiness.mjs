@@ -41,7 +41,9 @@ if (versions.every(([, value]) => value === pkg.version)) {
 } else {
   fail(
     "version mismatch: " +
-      versions.map(([file, value]) => `${file}=${value ?? "missing"}`).join(", "),
+      versions
+        .map(([file, value]) => `${file}=${value ?? "missing"}`)
+        .join(", "),
   );
 }
 if (!/^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/.test(pkg.version))
@@ -72,29 +74,48 @@ for (const file of staleFiles) {
 }
 
 const textRoots = ["src", "src-tauri/src", "scripts", "tests"];
-const textExtensions = new Set([".rs", ".ts", ".tsx", ".js", ".mjs", ".json", ".toml", ".md", ".css", ".html"]);
-const localPathPattern = /(?:[A-Za-z]:\\Users\\[^\\\r\n]+|\/Users\/[^/\r\n]+|\/home\/[^/\r\n]+)/;
+const textExtensions = new Set([
+  ".rs",
+  ".ts",
+  ".tsx",
+  ".js",
+  ".mjs",
+  ".json",
+  ".toml",
+  ".md",
+  ".css",
+  ".html",
+]);
+const localPathPattern =
+  /(?:[A-Za-z]:\\Users\\[^\\\r\n]+|\/Users\/[^/\r\n]+|\/home\/[^/\r\n]+)/;
 const walk = (relative) => {
   const absolute = path.join(root, relative);
   if (!fs.existsSync(absolute)) return;
   for (const entry of fs.readdirSync(absolute, { withFileTypes: true })) {
-    if (["node_modules", "target", "dist", "release"].includes(entry.name)) continue;
+    if (["node_modules", "target", "dist", "release"].includes(entry.name))
+      continue;
     const next = path.join(relative, entry.name);
     if (entry.isDirectory()) walk(next);
     else if (entry.isFile() && textExtensions.has(path.extname(entry.name))) {
       const text = fs.readFileSync(path.join(root, next), "utf8");
-      if (localPathPattern.test(text)) fail(`${next} contains an absolute user-home path`);
+      if (localPathPattern.test(text))
+        fail(`${next} contains an absolute user-home path`);
     }
   }
 };
 textRoots.forEach(walk);
-if (!failures.some((f) => f.includes("absolute user-home path"))) pass("first-party source contains no user-home paths");
+if (!failures.some((f) => f.includes("absolute user-home path")))
+  pass("first-party source contains no user-home paths");
 
-const marker = spawnSync(process.execPath, [path.join(root, "scripts/authorship_manifest.mjs")], {
-  cwd: root,
-  encoding: "utf8",
-  windowsHide: true,
-});
+const marker = spawnSync(
+  process.execPath,
+  [path.join(root, "scripts/authorship_manifest.mjs")],
+  {
+    cwd: root,
+    encoding: "utf8",
+    windowsHide: true,
+  },
+);
 if (marker.status === 0) pass("authorship marker manifest passes");
 else fail("authorship marker manifest failed");
 
@@ -102,12 +123,18 @@ if (requireLicense) {
   if (!exists("LICENSE")) fail("final LICENSE is missing");
   else {
     const license = read("LICENSE");
-    if (/Permission is hereby granted, free of charge, to any person obtaining a copy/i.test(license))
+    if (
+      /Permission is hereby granted, free of charge, to any person obtaining a copy/i.test(
+        license,
+      )
+    )
       fail("LICENSE appears to still be the MIT license");
-    else if (!/NEXUS/i.test(license)) warn("LICENSE does not mention NEXUS; review before publishing");
+    else if (!/NEXUS/i.test(license))
+      warn("LICENSE does not mention NEXUS; review before publishing");
     else pass("final project LICENSE is present and is not the MIT template");
   }
-  if (exists("LICENSE-PENDING.md")) fail("remove LICENSE-PENDING.md after adding the final license");
+  if (exists("LICENSE-PENDING.md"))
+    fail("remove LICENSE-PENDING.md after adding the final license");
 } else if (exists("LICENSE-PENDING.md")) {
   pass("pre-release licensing guard is present");
 } else if (!exists("LICENSE")) {
@@ -120,9 +147,18 @@ if (binary) {
   else {
     const data = fs.readFileSync(absolute);
     const needles = new Set();
-    for (const value of [root, os.homedir(), process.env.CARGO_HOME, process.env.RUSTUP_HOME]) {
+    for (const value of [
+      root,
+      os.homedir(),
+      process.env.CARGO_HOME,
+      process.env.RUSTUP_HOME,
+    ]) {
       if (!value) continue;
-      for (const variant of [value, value.replaceAll("\\", "/"), value.replaceAll("/", "\\")]) {
+      for (const variant of [
+        value,
+        value.replaceAll("\\", "/"),
+        value.replaceAll("/", "\\"),
+      ]) {
         needles.add(variant);
       }
     }
@@ -142,7 +178,8 @@ if (binary) {
       if (data.indexOf(Buffer.from(markerText, "utf8")) < 0)
         fail(`binary is missing expected product marker: ${markerText}`);
     }
-    if (!failures.some((f) => f.startsWith("binary "))) pass("binary path-leak and product-marker checks pass");
+    if (!failures.some((f) => f.startsWith("binary ")))
+      pass("binary path-leak and product-marker checks pass");
   }
 }
 
@@ -154,4 +191,8 @@ if (failures.length) {
   console.error(`Release readiness failed with ${failures.length} issue(s).`);
   process.exit(1);
 }
-console.log(requireLicense ? "Release metadata gate passed." : "Source readiness gate passed.");
+console.log(
+  requireLicense
+    ? "Release metadata gate passed."
+    : "Source readiness gate passed.",
+);
