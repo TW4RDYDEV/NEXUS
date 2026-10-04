@@ -7,18 +7,7 @@ import os from "node:os";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 
-const forbiddenLibraries = [
-  /^libwayland-client\.so(?:\.|$)/,
-  /^libwayland-cursor\.so(?:\.|$)/,
-  /^libwayland-egl\.so(?:\.|$)/,
-  /^libwayland-server\.so(?:\.|$)/,
-  /^libxkbcommon\.so(?:\.|$)/,
-  /^libxcb-randr\.so(?:\.|$)/,
-  /^libxcb-render\.so(?:\.|$)/,
-  /^libxcb-shm\.so(?:\.|$)/,
-  /^libXau\.so(?:\.|$)/,
-  /^libXdmcp\.so(?:\.|$)/,
-];
+import { isForbiddenAppImageLibrary } from "./appimage-display-policy.mjs";
 
 const appImageArg = process.argv[2];
 
@@ -56,7 +45,7 @@ const walk = (directory, found = []) => {
       continue;
     }
 
-    if (forbiddenLibraries.some((pattern) => pattern.test(entry.name))) {
+    if (isForbiddenAppImageLibrary(entry.name)) {
       found.push(path.relative(appDir, absolute));
     }
   }
