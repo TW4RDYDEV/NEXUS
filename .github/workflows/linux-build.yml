@@ -2,9 +2,17 @@ name: Linux Build
 
 on:
   workflow_dispatch:
+
   push:
     branches:
-      - feature/linux-support
+      - main
+      - "release/**"
+    tags:
+      - "v*"
+
+  pull_request:
+    branches:
+      - main
 
 permissions:
   contents: read
