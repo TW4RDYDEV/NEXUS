@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.1.1 — 2026-10-04
+
+Linux AppImage compatibility fix.
+
+- Fixed AppImage startup failures on newer Mesa/EGL environments, including current Arch Linux.
+- Updated the Tauri CLI packaging toolchain to 2.12.1.
+- Added a shared AppImage display-stack library policy.
+- Added deterministic post-build AppImage sanitization for conflicting bundled Wayland/X11 support libraries.
+- Added a release gate that rejects AppImages if known-problematic display-stack libraries are still bundled.
+- Pinned and SHA-256 verified the AppImage repackaging tool and runtime used by the release pipeline.
+- Preserved DEB and RPM packaging behavior.
+- Verified the final AppImage through GitHub Actions smoke testing and a real Arch Linux launch test.
+- No changes to engagement data, vault encryption, scope enforcement, IPC permissions, or the core security model.
+
 ## 1.1.0 — 2026-10-03
 
 Linux support release.
@@ -14,7 +28,6 @@ Linux support release.
 - Added automated AppImage launch smoke testing before Linux artifacts are accepted.
 - Preserved the existing Windows x64 NSIS and portable release workflow.
 - No changes to engagement data, vault encryption, scope enforcement, IPC permissions, or the core security model.
-
 
 ## 1.0.0 — 2026-09-12
 

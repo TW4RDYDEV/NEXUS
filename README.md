@@ -7,7 +7,7 @@
 
 _Map assets. Track access. Understand the path._
 
-[![Release](https://img.shields.io/badge/release-v1.1.0-f2f3f5?style=flat-square&labelColor=111418)](https://github.com/TW4RDYDEV/NEXUS/releases)
+[![Release](https://img.shields.io/badge/release-v1.1.1-f2f3f5?style=flat-square&labelColor=111418)](https://github.com/TW4RDYDEV/NEXUS/releases)
 [![Platform](https://img.shields.io/badge/platform-Windows%20x64%20%7C%20Linux%20x86__64-f2f3f5?style=flat-square&labelColor=111418)](#installation)
 [![Tauri](https://img.shields.io/badge/Tauri-2-f2f3f5?style=flat-square&labelColor=111418)](https://tauri.app/)
 [![Rust](https://img.shields.io/badge/core-Rust-f2f3f5?style=flat-square&labelColor=111418)](https://www.rust-lang.org/)
@@ -140,14 +140,14 @@ NEXUS keeps that state connected and explainable.
 
 ## Supported imports
 
-| Tool / format | Support |
-| --- | --- |
-| Nmap XML | Import + reviewed normalization |
-| httpx JSON / JSONL | Import + service enrichment |
-| Nuclei JSONL | Import + draft findings |
-| NetExec output | Import + access observations |
-| Nessus v2 `.nessus` | Import |
-| Burp Issues XML | Import |
+| Tool / format       | Support                         |
+| ------------------- | ------------------------------- |
+| Nmap XML            | Import + reviewed normalization |
+| httpx JSON / JSONL  | Import + service enrichment     |
+| Nuclei JSONL        | Import + draft findings         |
+| NetExec output      | Import + access observations    |
+| Nessus v2 `.nessus` | Import                          |
+| Burp Issues XML     | Import                          |
 
 NEXUS also detects local installations of Nmap, httpx, Nuclei, and NetExec. The built-in active runner is intentionally limited to a fixed, scope-validated Nmap workflow.
 
@@ -208,20 +208,22 @@ Available packages:
 #### AppImage
 
 ```bash
-chmod +x NEXUS-1.1.0-x86_64.AppImage
-./NEXUS-1.1.0-x86_64.AppImage
+chmod +x NEXUS-1.1.1-x86_64.AppImage
+./NEXUS-1.1.1-x86_64.AppImage
 ```
+
+NEXUS v1.1.1 includes an AppImage compatibility fix for newer Mesa/EGL/Wayland environments, including current Arch Linux systems.
 
 #### Debian / Ubuntu
 
 ```bash
-sudo apt install ./NEXUS-1.1.0-amd64.deb
+sudo apt install ./NEXUS-1.1.1-amd64.deb
 ```
 
 #### Fedora / RHEL
 
 ```bash
-sudo dnf install ./NEXUS-1.1.0-x86_64.rpm
+sudo dnf install ./NEXUS-1.1.1-x86_64.rpm
 ```
 
 Nmap and optional external integrations such as httpx, Nuclei, and NetExec must be installed separately.
@@ -287,9 +289,9 @@ npm run release:check
 npm run release:linux
 ```
 
-The Linux release builder produces AppImage, DEB, and RPM packages, performs release validation and deterministic artifact staging, and generates SHA-256 checksums.
+The Linux release builder produces AppImage, DEB, and RPM packages, performs release validation and deterministic artifact staging, sanitizes the AppImage against known Mesa/EGL/Wayland display-stack conflicts, verifies the final AppImage library policy, and generates SHA-256 checksums.
 
-The repository also includes a GitHub Actions Linux build workflow using Ubuntu 22.04. The workflow builds the Linux release packages and performs an automated AppImage launch smoke test before artifacts are uploaded.
+The repository also includes a GitHub Actions Linux build workflow using Ubuntu 22.04. The workflow builds the Linux release packages, validates the sanitized AppImage, and performs an automated AppImage launch smoke test before artifacts are uploaded.
 
 See [Verification](docs/VERIFICATION.md), [Architecture](docs/ARCHITECTURE.md), and [Security](SECURITY.md) for more detail.
 
