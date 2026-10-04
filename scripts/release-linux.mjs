@@ -150,15 +150,26 @@ const appImage = findBundle("appimage", ".AppImage", "AppImage");
 const deb = findBundle("deb", ".deb", "DEB");
 const rpm = findBundle("rpm", ".rpm", "RPM");
 
+const stagedAppImage = path.join(stage, `NEXUS-${version}-x86_64.AppImage`);
+const stagedDeb = path.join(stage, `NEXUS-${version}-amd64.deb`);
+const stagedRpm = path.join(stage, `NEXUS-${version}-x86_64.rpm`);
+
 const artifacts = [
-  [appImage, path.join(stage, `NEXUS-${version}-x86_64.AppImage`)],
-  [deb, path.join(stage, `NEXUS-${version}-amd64.deb`)],
-  [rpm, path.join(stage, `NEXUS-${version}-x86_64.rpm`)],
+  [appImage, stagedAppImage],
+  [deb, stagedDeb],
+  [rpm, stagedRpm],
 ];
 
 for (const [source, destination] of artifacts) {
   fs.copyFileSync(source, destination);
 }
+
+fs.chmodSync(stagedAppImage, 0o755);
+
+run(process.execPath, [
+  path.join(root, "scripts/check-appimage-libs.mjs"),
+  stagedAppImage,
+]);
 
 for (const [source, destination] of [
   ["LICENSE", "LICENSE.txt"],
