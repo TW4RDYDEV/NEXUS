@@ -28,19 +28,10 @@
   },
   "bundle": {
     "active": true,
-    "targets": [
-      "nsis"
-    ],
     "icon": [
-      "icons/icon.ico",
       "icons/icon.png"
     ],
     "shortDescription": "Offensive Security Engagement Platform",
-    "category": "DeveloperTool",
-    "windows": {
-      "webviewInstallMode": {
-        "type": "downloadBootstrapper"
-      }
-    }
+    "category": "DeveloperTool"
   }
 }
