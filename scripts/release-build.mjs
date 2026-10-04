@@ -110,19 +110,25 @@ fs.copyFileSync(builtExe, stagedExe);
 
 if (bundle) {
   const nsisDir = path.join(targetRoot, "release", "bundle", "nsis");
-  const installer = fs.existsSync(nsisDir)
-    ? fs
-        .readdirSync(nsisDir)
-        .find((name) => name.toLowerCase().endsWith(".exe"))
-    : null;
-  if (!installer) {
-    console.error(
-      `NSIS installer was requested but not found under ${nsisDir}.`,
-    );
+  const expectedInstaller = `NEXUS_${version}_x64-setup.exe`;
+  const installerPath = path.join(nsisDir, expectedInstaller);
+
+  if (!fs.existsSync(installerPath)) {
+    const available = fs.existsSync(nsisDir)
+      ? fs.readdirSync(nsisDir).filter((name) => name.endsWith(".exe"))
+      : [];
+
+    console.error(`Expected NSIS installer was not found: ${installerPath}`);
+
+    if (available.length) {
+      console.error(`Available NSIS installers: ${available.join(", ")}`);
+    }
+
     process.exit(1);
   }
+
   fs.copyFileSync(
-    path.join(nsisDir, installer),
+    installerPath,
     path.join(stage, `NEXUS-Setup-${version}.exe`),
   );
 }
