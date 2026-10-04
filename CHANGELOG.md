@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.1.0 — 2026-10-03
+
+Linux support release.
+
+- Added official Linux x86_64 support.
+- Added AppImage packaging for portable Linux use, including Arch Linux.
+- Added native `.deb` packages for Debian and Ubuntu.
+- Added native `.rpm` packages for Fedora and RHEL-compatible distributions.
+- Added platform-specific Tauri configuration for Windows and Linux.
+- Added a dedicated Linux release builder with deterministic artifact staging and SHA-256 checksums.
+- Added GitHub Actions builds on Ubuntu 22.04.
+- Added automated AppImage launch smoke testing before Linux artifacts are accepted.
+- Preserved the existing Windows x64 NSIS and portable release workflow.
+- No changes to engagement data, vault encryption, scope enforcement, IPC permissions, or the core security model.
+
+
 ## 1.0.0 — 2026-09-12
 
 Initial public NEXUS release baseline.
