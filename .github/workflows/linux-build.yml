@@ -1,0 +1,95 @@
+name: Linux Build
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - feature/linux-support
+
+permissions:
+  contents: read
+
+jobs:
+  build-linux:
+    name: Build Linux x86_64
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Linux dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            build-essential \
+            curl \
+            wget \
+            file \
+            libssl-dev \
+            libgtk-3-dev \
+            libwebkit2gtk-4.1-dev \
+            libayatana-appindicator3-dev \
+            librsvg2-dev \
+            libxdo-dev \
+            libfuse2 \
+            rpm \
+            xvfb
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Install frontend dependencies
+        run: npm ci
+
+      - name: Release readiness
+        run: npm run release:check
+
+      - name: Build Linux release
+        run: npm run release:linux
+
+      - name: Smoke test Linux AppImage
+        run: |
+          set +e
+
+          NEXUS_DATA_DIR="$RUNNER_TEMP/nexus-smoke" \
+          APPIMAGE_EXTRACT_AND_RUN=1 \
+          timeout 15s xvfb-run -a release/linux-x64/NEXUS-*.AppImage
+
+          code=$?
+          set -e
+
+          if [ "$code" -eq 124 ]; then
+            echo "NEXUS AppImage launched successfully and remained running."
+            exit 0
+          fi
+
+          echo "NEXUS AppImage exited unexpectedly with code $code."
+          exit "$code"
+
+      - name: Show staged artifacts
+        run: |
+          echo "=== NEXUS Linux artifacts ==="
+          ls -lah release/linux-x64
+          echo
+          cat release/linux-x64/SHA256SUMS.txt
+
+      - name: Upload Linux release artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: NEXUS-linux-x64
+          path: |
+            release/linux-x64/NEXUS-*.AppImage
+            release/linux-x64/NEXUS-*.deb
+            release/linux-x64/NEXUS-*.rpm
+            release/linux-x64/SHA256SUMS.txt
+            release/linux-x64/LICENSE.txt
+            release/linux-x64/THIRD_PARTY_NOTICES.txt
+            release/linux-x64/START-HERE.txt
+          if-no-files-found: error

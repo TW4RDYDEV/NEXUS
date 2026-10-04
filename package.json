@@ -25,7 +25,8 @@
     "format:check": "prettier --check src tests scripts *.json *.ts *.js *.html",
     "release:source-check": "node scripts/release-readiness.mjs",
     "release:check": "node scripts/release-readiness.mjs --require-license",
-    "release:build": "node scripts/release-build.mjs --bundle"
+    "release:build": "node scripts/release-build.mjs --bundle",
+    "release:linux": "node scripts/release-linux.mjs"
   },
   "dependencies": {
     "@tauri-apps/api": "^2.8.0",
