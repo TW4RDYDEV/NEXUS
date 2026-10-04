@@ -150,15 +150,35 @@ const appImage = findBundle("appimage", ".AppImage", "AppImage");
 const deb = findBundle("deb", ".deb", "DEB");
 const rpm = findBundle("rpm", ".rpm", "RPM");
 
-const artifacts = [
-  [appImage, path.join(stage, `NEXUS-${version}-x86_64.AppImage`)],
-  [deb, path.join(stage, `NEXUS-${version}-amd64.deb`)],
-  [rpm, path.join(stage, `NEXUS-${version}-x86_64.rpm`)],
+const stagedAppImage = path.join(stage, `NEXUS-${version}-x86_64.AppImage`);
+const stagedDeb = path.join(stage, `NEXUS-${version}-amd64.deb`);
+const stagedRpm = path.join(stage, `NEXUS-${version}-x86_64.rpm`);
+
+const packageArtifacts = [
+  [deb, stagedDeb],
+  [rpm, stagedRpm],
 ];
 
-for (const [source, destination] of artifacts) {
+for (const [source, destination] of packageArtifacts) {
   fs.copyFileSync(source, destination);
 }
+
+console.log("");
+console.log("Sanitizing NEXUS AppImage display-stack libraries…");
+
+run(process.execPath, [
+  path.join(root, "scripts/sanitize-appimage.mjs"),
+  appImage,
+  stagedAppImage,
+]);
+
+console.log("");
+console.log("Verifying final NEXUS AppImage library policy…");
+
+run(process.execPath, [
+  path.join(root, "scripts/check-appimage-libs.mjs"),
+  stagedAppImage,
+]);
 
 for (const [source, destination] of [
   ["LICENSE", "LICENSE.txt"],
@@ -202,7 +222,7 @@ fs.writeFileSync(
 const sha256 = (file) =>
   crypto.createHash("sha256").update(fs.readFileSync(file)).digest("hex");
 
-const publicArtifacts = artifacts.map(([, destination]) => destination);
+const publicArtifacts = [stagedAppImage, stagedDeb, stagedRpm];
 
 const sums = publicArtifacts.map(
   (file) => `${sha256(file)}  ${path.basename(file)}`,
