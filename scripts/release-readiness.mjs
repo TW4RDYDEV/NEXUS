@@ -67,8 +67,7 @@ const staleFiles = [
 for (const file of staleFiles) {
   if (!exists(file)) continue;
   const text = read(file);
-  if (/\b1\.1\.0\b|\bNEXUS 1\.1\b|\b1\.1 walkthrough\b/.test(text))
-    fail(`${file} contains stale NEXUS 1.1 release wording`);
+
   if (/NEXUS source is MIT licensed|Preserved .*MIT license/i.test(text))
     fail(`${file} contains stale project-level MIT wording`);
 }

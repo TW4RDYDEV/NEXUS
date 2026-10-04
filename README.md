@@ -7,8 +7,8 @@
 
 _Map assets. Track access. Understand the path._
 
-[![Release](https://img.shields.io/badge/release-v1.0.0-f2f3f5?style=flat-square&labelColor=111418)](https://github.com/TW4RDYDEV/NEXUS/releases)
-[![Platform](https://img.shields.io/badge/platform-Windows%20x64-f2f3f5?style=flat-square&labelColor=111418)](#installation)
+[![Release](https://img.shields.io/badge/release-v1.1.0-f2f3f5?style=flat-square&labelColor=111418)](https://github.com/TW4RDYDEV/NEXUS/releases)
+[![Platform](https://img.shields.io/badge/platform-Windows%20x64%20%7C%20Linux%20x86__64-f2f3f5?style=flat-square&labelColor=111418)](#installation)
 [![Tauri](https://img.shields.io/badge/Tauri-2-f2f3f5?style=flat-square&labelColor=111418)](https://tauri.app/)
 [![Rust](https://img.shields.io/badge/core-Rust-f2f3f5?style=flat-square&labelColor=111418)](https://www.rust-lang.org/)
 [![License](https://img.shields.io/badge/license-source--available-f2f3f5?style=flat-square&labelColor=111418)](LICENSE)
@@ -179,28 +179,68 @@ Export report or verified workspace bundle
 
 ## Installation
 
-### Windows release
-
-The intended first public release target is **Windows x64**.
+NEXUS supports **Windows x64** and **Linux x86_64**.
 
 Download the latest release from:
 
 **[GitHub Releases](https://github.com/TW4RDYDEV/NEXUS/releases/latest)**
 
-The release page contains the current executable/package and SHA-256 checksums.
+Release artifacts include SHA-256 checksums for verification.
 
-> The initial community build may be unsigned. Windows can therefore display an Unknown Publisher / SmartScreen warning until code signing is introduced.
+### Windows
+
+Available packages:
+
+- Windows installer
+- Standalone executable
+- Portable ZIP
+
+> Community builds may be unsigned. Windows can therefore display an Unknown Publisher / SmartScreen warning until code signing is introduced.
+
+### Linux
+
+Available packages:
+
+- **AppImage** — recommended for Arch Linux and other distributions
+- **DEB** — Debian / Ubuntu
+- **RPM** — Fedora / RHEL-compatible distributions
+
+#### AppImage
+
+```bash
+chmod +x NEXUS-1.1.0-x86_64.AppImage
+./NEXUS-1.1.0-x86_64.AppImage
+```
+
+#### Debian / Ubuntu
+
+```bash
+sudo apt install ./NEXUS-1.1.0-amd64.deb
+```
+
+#### Fedora / RHEL
+
+```bash
+sudo dnf install ./NEXUS-1.1.0-x86_64.rpm
+```
+
+Nmap and optional external integrations such as httpx, Nuclei, and NetExec must be installed separately.
 
 ### Run from source
 
-Requirements:
+Common requirements:
 
 - Node.js 24.x
 - Rust stable
+
+Windows additionally requires:
+
 - Microsoft C++ Build Tools + Windows SDK
 - Microsoft Edge WebView2 Runtime
 
-```powershell
+Linux requires the native GTK/WebKit dependencies used by Tauri.
+
+```bash
 git clone https://github.com/TW4RDYDEV/NEXUS.git
 cd NEXUS
 npm ci
@@ -211,7 +251,7 @@ This launches the real Tauri desktop application backed by the Rust core and SQL
 
 ## Development & verification
 
-```powershell
+```bash
 npm run format:check
 npm run lint
 npm run typecheck
@@ -225,7 +265,9 @@ npm run fingerprint:test
 npm run authorship:check
 ```
 
-For the controlled Windows release build:
+### Windows release build
+
+Run on Windows:
 
 ```powershell
 npm ci
@@ -233,7 +275,21 @@ npm run release:check
 npm run release:build
 ```
 
-The release builder remaps local Rust/Cargo paths, stages the Windows x64 artifact, checks embedded NEXUS identity markers, rejects known local build-path leakage, and creates SHA-256 sums.
+The Windows release builder remaps local Rust/Cargo paths, stages the Windows x64 artifacts, checks embedded NEXUS identity markers, rejects known local build-path leakage, and creates SHA-256 sums.
+
+### Linux release build
+
+Run on Linux x86_64:
+
+```bash
+npm ci
+npm run release:check
+npm run release:linux
+```
+
+The Linux release builder produces AppImage, DEB, and RPM packages, performs release validation and deterministic artifact staging, and generates SHA-256 checksums.
+
+The repository also includes a GitHub Actions Linux build workflow using Ubuntu 22.04. The workflow builds the Linux release packages and performs an automated AppImage launch smoke test before artifacts are uploaded.
 
 See [Verification](docs/VERIFICATION.md), [Architecture](docs/ARCHITECTURE.md), and [Security](SECURITY.md) for more detail.
 
